@@ -67,13 +67,7 @@ html {
   justify-content: space-around;
   height: 100%;
 }
-.twitter a {
-  position: relative;
-}
-.twitter a img {
-  width: 48px;
-  height: 48px;
-}
+
 .twitter p {
   text-transform: uppercase;
   font-size: 1em;
@@ -135,6 +129,7 @@ html {
   margin: 10px;
   background-color: white;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  max-height: 20%;
 }
 .card:hover .card__caption {
   top: 50%;
@@ -156,7 +151,7 @@ html {
 }
 @media (min-width: 1024px) {
   .card__thumb {
-    max-height: 500px;
+    max-height: 400px;
   }
 }
 .card__thumb::after {
@@ -237,22 +232,4 @@ html {
 .card__button:hover {
   color: black;
   background-color: white;
-}
-.disclaimer {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  z-index: 2;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 20px 10px;
-  background-color: white;
-  transform: translateX(-50%);
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  text-align: center;
-}
-.disclaimer__link {
-  color: #755d87;
-  text-decoration: none;
 }
