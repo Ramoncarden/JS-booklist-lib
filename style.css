@@ -72,11 +72,12 @@ html {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
+  /* background-color: #fefefe; */
   margin: 15% auto; /* 15% from the top and centered */
+  background-color: #19152b;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 20%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -133,7 +134,11 @@ html {
   width: 31.3%;
   margin: 10px;
   max-height: 420px;
+  justify-content: center;
+  /* align-self: center; */
+  display: flex;
 }
+
 .card:hover .card__caption {
   top: 50%;
   transform: translateY(-50%);
@@ -166,7 +171,11 @@ html {
   content: '';
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
   transition: 0.3s;
 }
 @media (min-width: 1024px) {
@@ -251,7 +260,8 @@ html {
   font-size: 8rem;
   color: rgba(18, 7, 38, 0.666);
   transition: 0.3s;
-  margin: 7% 5%;
+  margin: 0 auto;
+  align-self: center;
 }
 
 #modal-btn:hover,
@@ -267,16 +277,19 @@ html {
 /* ************ FORM ************ */
 
 .form {
-  background-color: #15172b;
+  background-color: #2b1a3a;
   border-radius: 20px;
   box-sizing: border-box;
   height: 500px;
   padding: 20px;
-  width: 320px;
+  width: 360px;
+  margin: auto;
 }
 
 .form-title {
-  color: #eee;
+  background: -webkit-linear-gradient(135deg, #43cbff 10%, #9708cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: sans-serif;
   font-size: 36px;
   font-weight: 600;
@@ -284,7 +297,9 @@ html {
 }
 
 .subtitle {
-  color: #eee;
+  background: -webkit-linear-gradient(135deg, #43cbff 10%, #9708cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -319,7 +334,7 @@ html {
 }
 
 .cut {
-  background-color: #15172b;
+  background-color: #2b1a3a;
   border-radius: 10px;
   height: 20px;
   left: 20px;
@@ -331,7 +346,7 @@ html {
 }
 
 .cut-short {
-  width: 50px;
+  width: 90px;
 }
 
 .input:focus ~ .cut,
@@ -361,11 +376,11 @@ html {
 }
 
 .input:focus ~ .placeholder {
-  color: #dc2f55;
+  color: #7a2fdc;
 }
 
 .submit {
-  background-color: #08d;
+  background-color: cyan;
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
@@ -380,5 +395,5 @@ html {
 }
 
 .submit:active {
-  background-color: #06b;
+  background-color: rgb(0, 171, 187);
 }
