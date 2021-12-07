@@ -1,22 +1,27 @@
-let library = [];
+let library = [
+  {
+    title: 'The Catcher in The Rye'
+  }
+];
 
 function Book(title, author, pages, haveRead) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.coverImage = coverImage;
   this.haveRead = haveRead;
 }
 
 function addBookToLibrary() {}
 
 // Get the modal
-var modal = document.getElementById('myModal');
+const modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-var btn = document.getElementById('myBtn');
+const btn = document.getElementById('modal-btn');
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName('close')[0];
+const span = document.getElementsByClassName('close')[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
