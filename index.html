@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <title>Library</title>
   </head>
   <body>
@@ -24,22 +25,23 @@
       <section class="book-display">
         <div id='book-container' class="container">
           <div class="card" data-index=>
-            <figure class="card__thumb">
+            <figure class="card-thumb">
               <img
                 src="https://source.unsplash.com/75S9fpDJVdo/300x510"
                 alt="Picture by Kyle Cottrell"
-                class="card__image"
+                class="card-image"
               />
-              <figcaption class="card__caption">
-                <h2 class="card__title">
+              <figcaption class="card-caption">
+                <h2 class="card-title">
                   NASA Has Found Hundreds Of Potential New Planets
                 </h2>
-                <p class="card__snippet">
+                <p class="card-snippet">
                   NASA released a list of 219 new “planet candidates” discovered
                   by the Kepler space telescope, 10 of which are similar to
                   Earth’s size and may be habitable by other life forms.
                 </p>
-                <a href="" class="card__button">Read more</a>
+                <button class="card-button">Read more</button>
+                <button class="trash"><i class="fas fa-trash-alt"></i></button>
               </figcaption>
             </figure>
           </div>
@@ -53,7 +55,7 @@
               <div class="modal-content">
                 <span class="close">&times;</span>
                 <form class="book-form">
-                  <div class="form-title">Add New Book</div>
+                  <div id='name' class="form-title">Add New Book</div>
                   <div class="subtitle">Fill info below to add new book!</div>
                   <div class="input-container ic1">
                     <input

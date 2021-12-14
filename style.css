@@ -60,7 +60,7 @@ html {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
   width: 100vw; /* Full width */
@@ -111,13 +111,13 @@ html {
   float: right;
   height: 100vh;
 }
+
 .book-display .container {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
   flex-wrap: wrap;
   align-items: top;
-  /* justify-content: space-around; */
   height: 100%;
 }
 
@@ -134,37 +134,37 @@ html {
   width: 31.3%;
   margin: 10px;
   max-height: 420px;
+  min-height: 420px;
   justify-content: center;
-  /* align-self: center; */
   display: flex;
 }
 
-.card:hover .card__caption {
+.card:hover .card-caption {
   top: 50%;
   transform: translateY(-50%);
 }
-.card:hover .card__image {
+.card:hover .card-image {
   transform: translateY(-10px);
 }
-.card:hover .card__thumb::after {
+.card:hover .card-thumb::after {
   top: 0;
 }
-.card:hover .card__snippet {
+.card:hover .card-snippet {
   margin: 20px 0;
 }
-.card__thumb {
+.card-thumb {
   position: relative;
   max-height: 400px;
   overflow: hidden;
   width: 75%;
 }
 @media (min-width: 1024px) {
-  .card__thumb {
+  .card-thumb {
     max-height: 400px;
     width: 90%;
   }
 }
-.card__thumb::after {
+.card-thumb::after {
   position: absolute;
   top: 0;
   display: block;
@@ -179,17 +179,20 @@ html {
   transition: 0.3s;
 }
 @media (min-width: 1024px) {
-  .card__thumb::after {
+  .card-thumb::after {
     top: calc(100% - 140px);
   }
 }
-.card__image {
+
+.card-image {
   transition: 0.5s ease-in-out;
   width: 75%;
+  height: 100%;
   display: block;
   margin: 0 auto;
 }
-.card__caption {
+
+.card-caption {
   position: absolute;
   top: 50%;
   z-index: 1;
@@ -198,14 +201,17 @@ html {
   transform: translateY(-50%);
   text-align: center;
   transition: 0.3s;
+  width: 76.6%;
 }
+
 @media (min-width: 1024px) {
-  .card__caption {
-    top: calc(100% - 110px);
+  .card-caption {
+    top: calc(100% - 22%);
     transform: unset;
   }
 }
-.card__title {
+
+.card-title {
   display: -webkit-box;
   max-height: 85px;
   /* overflow: hidden; */
@@ -217,7 +223,7 @@ html {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.card__snippet {
+.card-snippet {
   display: -webkit-box;
   max-height: 150px;
   margin: 20px 0;
@@ -231,24 +237,39 @@ html {
   -webkit-box-orient: vertical;
 }
 @media (min-width: 1024px) {
-  .card__snippet {
+  .card-snippet {
     margin: 60px 0;
   }
 }
-.card__button {
+.card-button {
   display: inline-block;
   padding: 10px 20px;
-  color: white;
-  border: 1px solid white;
+  color: rgb(29, 7, 44);
+  border: 1px solid rgb(177, 57, 246);
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.2s;
+  background-color: rgb(225, 174, 255);
+  letter-spacing: 1.3px;
 }
-.card__button:hover {
-  color: black;
-  background-color: white;
+
+.card-button-read {
+  background-color: rgb(59, 7, 88);
+  color: rgb(10, 145, 199);
+  font-weight: bold;
+}
+
+.trash {
+  color: rgba(255, 255, 255, 0.911);
+  font-size: 12.5px;
+  background-color: rgb(223, 87, 105);
+  margin-left: 5px;
+  height: 37px;
+  padding: 10px 14px;
+  border: 1px solid rgb(241, 86, 86);
+  vertical-align: top;
 }
 
 #modal-btn {

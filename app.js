@@ -1,20 +1,10 @@
-let library = [
-  {
-    id: 0,
-    title: 'The Catcher in The Rye',
-    author: 'J.D. Salinger',
-    pages: 234,
-    haveRead: true,
-    coverImage:
-      'https://www.candlesbook.com/wp-content/uploads/book-cover-art-print-catcher.jpg',
-  },
-];
+let library = JSON.parse(localStorage.getItem('BookList')) || [];
 
 const STOCK_IMAGE =
   'https://images.pexels.com/photos/256161/pexels-photo-256161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
 
 function Book(title, author, pages, haveRead) {
-  this.id = id;
+  this.id = index;
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -44,39 +34,53 @@ const container = document.getElementById('book-container');
 let storedBooks = JSON.parse(localStorage.getItem('BookList')) || [];
 
 // Load all booklist cards
-for (let i = 0; i < storedBooks.length; i++) {
-  generateCard(storedBooks[i]);
+function render() {
+  for (let i = 0; i < library.length; i++) {
+    generateCard(library[i]);
+  }
 }
+render();
 
 // create a new card when use submits new book
 function generateCard(book) {
   let newCard = document.createElement('div');
+  newCard.setAttribute('id', library.indexOf(book));
   newCard.classList.add('card');
 
   let figure = document.createElement('figure');
-  figure.classList.add('card__thumb');
+  figure.classList.add('card-thumb');
 
   let img = document.createElement('img');
-  img.classList.add('card__thumb');
+  img.classList.add('card-image');
   img.src = STOCK_IMAGE;
   figure.appendChild(img);
 
   let figcaption = document.createElement('figcaption');
-  figcaption.classList.add('card__caption');
+  figcaption.classList.add('card-caption');
 
   let newTitle = document.createElement('h2');
-  newTitle.classList.add('card__title');
+  newTitle.classList.add('card-title');
   newTitle.innerText = book.title;
 
   let p = document.createElement('p');
-  p.classList.add('card_snippet');
+  p.classList.add('card-snippet');
   p.innerText = book.author;
-  let a = document.createElement('a');
-  a.classList.add('card__button');
+
+  let readBtn = document.createElement('button');
+  readBtn.classList.add('card-button');
+  readBtn.innerText = 'Mark as Read';
+
+  let trashBtn = document.createElement('button');
+  trashBtn.classList.add('trash');
+  let trashIcon = document.createElement('i');
+  trashIcon.classList.add('fas');
+  trashIcon.classList.add('fa-trash-alt');
+  trashBtn.appendChild(trashIcon);
+
   figcaption.appendChild(newTitle);
   figcaption.appendChild(p);
-  figcaption.appendChild(a);
-
+  figcaption.appendChild(readBtn);
+  figcaption.appendChild(trashBtn);
   figure.appendChild(figcaption);
   newCard.appendChild(figure);
   container.appendChild(newCard);
@@ -91,7 +95,9 @@ function addBookToLibrary(e) {
     pages: document.getElementById('book-pages').value,
     haveRead: document.getElementById('have-read').checked,
   };
+
   library.push(book);
+
   console.log(book);
   form.reset();
   modal.style.display = 'none';
@@ -99,8 +105,7 @@ function addBookToLibrary(e) {
   generateCard(book);
 
   // save to LocalStorage
-  storedBooks.push(book);
-  localStorage.setItem('BookList', JSON.stringify(storedBooks));
+  localStorage.setItem('BookList', JSON.stringify(library));
 }
 
 // When the user clicks on the button, open the modal
@@ -120,4 +125,37 @@ window.onclick = function (event) {
   }
 };
 
+const markAsRead = container.querySelectorAll('.card-button');
+
+markAsRead.forEach((item) => {
+  item.addEventListener('click', function (e) {
+    if (e.target.classList.contains('card-button-read')) {
+      e.target.classList.remove('card-button-read');
+      e.target.innerText = 'MARK AS READ';
+    } else {
+      e.target.classList.add('card-button-read');
+      e.target.innerText = 'Status: Read 🗸';
+    }
+  });
+});
+
+const deleteBtn = container.querySelectorAll('.trash');
+function addDelete() {
+  deleteBtn.forEach((item) => {
+    item.addEventListener('click', function (e) {
+      const { target } = e;
+      console.log('deleted');
+
+      //DELETING WRONG ITEM WHEN NEW ITEM IS ADDED. NEED TO FIX
+      library.splice(library.indexOf(e), 1);
+      target.parentNode.parentNode.parentNode.style.display = 'none';
+
+      console.log(library);
+      localStorage.setItem('BookList', JSON.stringify(library));
+    });
+  });
+}
+
 form.addEventListener('submit', addBookToLibrary);
+
+addDelete();
