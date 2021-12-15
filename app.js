@@ -1,4 +1,4 @@
-let library = JSON.parse(localStorage.getItem('BookList')) || [];
+let library = [];
 
 const STOCK_IMAGE =
   'https://images.pexels.com/photos/256161/pexels-photo-256161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
@@ -30,13 +30,16 @@ const form = document.getElementsByClassName('book-form')[0];
 // container that will hold book list. Books will be appended here.
 const container = document.getElementById('book-container');
 
+let countBooks = () => library.length;
+
 // Gather books from local storage
 let storedBooks = JSON.parse(localStorage.getItem('BookList')) || [];
 
 // Load all booklist cards
 function render() {
-  for (let i = 0; i < library.length; i++) {
-    generateCard(library[i]);
+  for (let i = 0; i < storedBooks.length; i++) {
+    generateCard(storedBooks[i]);
+    library.push(storedBooks[i]);
   }
 }
 render();
@@ -44,8 +47,8 @@ render();
 // create a new card when use submits new book
 function generateCard(book) {
   let newCard = document.createElement('div');
-  newCard.setAttribute('id', library.indexOf(book));
   newCard.classList.add('card');
+  newCard.setAttribute('data-index', 1);
 
   let figure = document.createElement('figure');
   figure.classList.add('card-thumb');
@@ -84,6 +87,7 @@ function generateCard(book) {
   figure.appendChild(figcaption);
   newCard.appendChild(figure);
   container.appendChild(newCard);
+  countBooks();
 }
 
 // create new book object and append it to local storage
@@ -125,7 +129,7 @@ window.onclick = function (event) {
   }
 };
 
-const markAsRead = container.querySelectorAll('.card-button');
+const markAsRead = document.querySelectorAll('.card-button');
 
 markAsRead.forEach((item) => {
   item.addEventListener('click', function (e) {
@@ -139,23 +143,20 @@ markAsRead.forEach((item) => {
   });
 });
 
-const deleteBtn = container.querySelectorAll('.trash');
-function addDelete() {
-  deleteBtn.forEach((item) => {
-    item.addEventListener('click', function (e) {
-      const { target } = e;
-      console.log('deleted');
+// Need to add the delete button event listener to the parent container
+// so that every new created element will receive the event listener
 
-      //DELETING WRONG ITEM WHEN NEW ITEM IS ADDED. NEED TO FIX
-      library.splice(library.indexOf(e), 1);
-      target.parentNode.parentNode.parentNode.style.display = 'none';
-
-      console.log(library);
-      localStorage.setItem('BookList', JSON.stringify(library));
-    });
-  });
-}
+container.addEventListener('click', function (e) {
+  if (e.target.classList.contains('trash')) {
+    library.splice(library.indexOf(e.target), 1);
+    e.target.parentNode.parentNode.parentNode.remove();
+  } else if (e.target.classList.contains('fas')) {
+    library.splice(library.indexOf(e.target), 1);
+    e.target.parentNode.parentNode.parentNode.parentNode.remove();
+  }
+  localStorage.setItem('BookList', JSON.stringify(library));
+});
 
 form.addEventListener('submit', addBookToLibrary);
 
-addDelete();
+// addDelete();
