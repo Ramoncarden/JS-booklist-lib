@@ -32,6 +32,12 @@ const container = document.getElementById('book-container');
 
 const markAsRead = document.querySelectorAll('.card-button');
 
+const totalBooks = document.getElementById('total-books');
+
+const completedBooks = document.getElementById('completed-books');
+
+const totalPages = document.getElementById('total-pages');
+
 let countBooks = () => {
   if (!library.length) return 0;
   else if (library.length === 1) {
@@ -48,7 +54,30 @@ let countBooks = () => {
 function render() {
   for (let i = 0; i < library.length; i++) {
     generateCard(library[i]);
+    getLibraryStats();
   }
+}
+
+function getLibraryStats() {
+  totalBooks.innerText = library.length;
+  completedBooks.innerText = countCompletedBooks();
+  totalPages.innerText = countTotalPagesRead();
+}
+
+function countCompletedBooks() {
+  let count = 0;
+  for (let item of library) {
+    if (item.haveRead) count += 1;
+  }
+  return count;
+}
+
+function countTotalPagesRead() {
+  let count = 0;
+  for (let item of library) {
+    count += Number(item.pages);
+  }
+  return count;
 }
 
 // create a new card when use submits new book
@@ -103,6 +132,7 @@ function generateCard(book) {
       e.target.parentNode.parentNode.parentNode.remove();
     }
     localStorage.setItem('BookList', JSON.stringify(library));
+    getLibraryStats();
   });
 
   readBtn.addEventListener('click', function (e) {
@@ -115,7 +145,9 @@ function generateCard(book) {
     }
     book.haveRead = !book.haveRead;
     localStorage.setItem('BookList', JSON.stringify(library));
+    getLibraryStats();
   });
+  getLibraryStats();
 }
 
 // create new book object and append it to local storage

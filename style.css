@@ -55,6 +55,18 @@ html {
   background-image: linear-gradient(to right, #5e42a6, #b74e91);
 }
 
+.sidebar-stat {
+  color: greenyellow;
+  font-size: 24px;
+  margin: 0 2%;
+  padding-bottom: 5px;
+}
+
+.sidebar-stat:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
 /* ********************************* */
 
 .modal {
