@@ -30,6 +30,7 @@ const form = document.getElementsByClassName('book-form')[0];
 // container that will hold book list. Books will be appended here.
 const container = document.getElementById('book-container');
 
+// button to toggle read status
 const markAsRead = document.querySelectorAll('.card-button');
 
 const totalBooks = document.getElementById('total-books');
@@ -38,17 +39,14 @@ const completedBooks = document.getElementById('completed-books');
 
 const totalPages = document.getElementById('total-pages');
 
-let countBooks = () => {
+function countBooks() {
   if (!library.length) return 0;
   else if (library.length === 1) {
     return 1;
   } else {
     return library.length - 1;
   }
-};
-
-// Gather books from local storage
-// let storedBooks = ;
+}
 
 // Load all booklist cards
 function render() {
@@ -58,6 +56,7 @@ function render() {
   }
 }
 
+// call functions to retrieve user booklist data from local storage and set in sidebar
 function getLibraryStats() {
   totalBooks.innerText = library.length;
   completedBooks.innerText = countCompletedBooks();
@@ -80,7 +79,8 @@ function countTotalPagesRead() {
   return count;
 }
 
-// create a new card when use submits new book
+// create a new card when user submits new book and attach event handlers to buttons
+// inside of card
 function generateCard(book) {
   let newCard = document.createElement('div');
   newCard.classList.add('card');
@@ -105,6 +105,11 @@ function generateCard(book) {
   p.classList.add('card-snippet');
   p.innerText = book.author;
 
+  let pages = document.createElement('i');
+  // pages.classList.add('card-snippet');
+  pages.classList.add('card-pages');
+  pages.textContent = 'no of pages: ' + book.pages;
+
   let readBtn = document.createElement('button');
   readBtn.classList.add('card-button');
   if (book.haveRead) {
@@ -120,6 +125,7 @@ function generateCard(book) {
 
   figcaption.appendChild(newTitle);
   figcaption.appendChild(p);
+  figcaption.appendChild(pages);
   figcaption.appendChild(readBtn);
   figcaption.appendChild(trashBtn);
   figure.appendChild(figcaption);

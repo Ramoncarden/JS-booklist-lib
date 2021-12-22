@@ -67,7 +67,22 @@ html {
   cursor: pointer;
 }
 
-/* ********************************* */
+#radio-lable {
+  float: right;
+  color: #d9b7e2;
+  margin-left: 5%;
+}
+
+#have-read {
+  align-self: center;
+  justify-self: center;
+  vertical-align: middle;
+  margin-top: 6%;
+  margin-right: 5%;
+  margin-top: 0 auto;
+}
+
+/* ***************Modal****************** */
 
 .modal {
   display: none; /* Hidden by default */
@@ -115,7 +130,7 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* ********************* */
+/* *********Book Display Container and Cards************ */
 
 .book-display {
   position: relative;
@@ -137,7 +152,7 @@ html {
   text-transform: uppercase;
   font-size: 1em;
   letter-spacing: 0.1em;
-  color: rgb(23, 194, 213);
+  color: rgb(6, 204, 226);
   font-weight: bold;
   margin-top: 20px;
 }
@@ -181,8 +196,9 @@ html {
   top: 0;
   display: block;
   content: '';
-  width: 100%;
+  width: 75%;
   height: 100%;
+  left: 12.5%;
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.5) 40%,
@@ -226,15 +242,13 @@ html {
 .card-title {
   display: -webkit-box;
   max-height: 85px;
-  /* overflow: hidden; */
-  /* font-family: 'Playfair Display', serif; */
   font-size: 20px;
-  /* line-height: 28px; */
   text-shadow: 0px 1px 5px black;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 .card-snippet {
   display: -webkit-box;
   max-height: 150px;
@@ -248,11 +262,24 @@ html {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
+
+.card-pages {
+  color: #161499;
+  font-size: 18px;
+  font-style: bold;
+  display: block;
+  line-height: 10px;
+  font-family: 'Roboto', sans-serif;
+  margin: 20px 0;
+  letter-spacing: 0.1em;
+}
+
 @media (min-width: 1024px) {
   .card-snippet {
     margin: 60px 0;
   }
 }
+
 .card-button {
   display: inline-block;
   padding: 10px 20px;
@@ -282,6 +309,10 @@ html {
   padding: 10px 14px;
   border: 1px solid rgb(241, 86, 86);
   vertical-align: top;
+}
+
+#checkbox-container {
+  margin-top: 5%;
 }
 
 #modal-btn {
@@ -439,23 +470,4 @@ input[type='number'] {
 
 .submit:active {
   background-color: rgb(0, 171, 187);
-}
-
-#radio-lable {
-  float: right;
-  color: #d9b7e2;
-  margin-left: 5%;
-}
-
-#have-read {
-  align-self: center;
-  justify-self: center;
-  vertical-align: middle;
-  margin-top: 6%;
-  margin-right: 5%;
-  margin-top: 0 auto;
-}
-
-#checkbox-container {
-  margin-top: 5%;
 }
